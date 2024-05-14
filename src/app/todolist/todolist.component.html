@@ -27,8 +27,9 @@
                 <!-- <th scope="row">1</th> -->
                 <td>
                     <input #taskinput
-                        [ngClass]="{'edit':t.isEditable, 'not-edit': !  t.isEditable,'crossed': t.isCompleted}" type="text"
-                        class="form-control" id="taskInTable" value="{{t.taskName}}" [readonly]="!t.isEditable">
+                        [ngClass]="{'edit':t.isEditable, 'not-edit': !  t.isEditable,'crossed': t.isCompleted}"
+                        type="text" class="form-control" id="taskInTable" value="{{t.taskName}}"
+                        [readonly]="!t.isEditable">
                 </td>
                 <td><input (change)="onCheck(i)" class="form-check-input" type="checkbox" value=""
                         id="flexCheckDefault"></td>
