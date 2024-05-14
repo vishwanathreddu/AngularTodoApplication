@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>To-Do Application</h1>
+    <hr>
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" id="submitForm">
+        <div class="mb-3">
+            <label for="task">Task</label>
+            <input type="text" class="form-control" id="task" placeholder="Enter Task" ngModel name="task" required>
+            <div *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-danger">Required
+                Field</div>
+        </div>
+        <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th scope="row">1</th> -->
+                <th scope="col">Task</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Save</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of taskArray; index as i">
+                <!-- <th scope="row">1</th> -->
+                <td>
+                    <input #taskinput
+                        [ngClass]="{'edit':t.isEditable, 'not-edit': !  t.isEditable,'crossed': t.isCompleted}" type="text"
+                        class="form-control" id="taskInTable" value="{{t.taskName}}" [readonly]="!t.isEditable">
+                </td>
+                <td><input (change)="onCheck(i)" class="form-check-input" type="checkbox" value=""
+                        id="flexCheckDefault"></td>
+                <td><button id="delete" class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+                <td><button id="edit" class="btn btn-primary btn-sm" (click)="onEdit(i)"
+                        [disabled]="t.isEditable">Edit</button></td>
+                <td><button id="save" class="btn btn-warning btn-sm" (click)="onSave(i, taskinput.value)"
+                        [disabled]="!t.isEditable">Save</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
